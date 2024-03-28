@@ -3,13 +3,13 @@ pragma solidity 0.8.20;
 
 // Imports
 import {Script, console} from "forge-std/Script.sol";
-import {TokenSanctions} from "../src/TokenSanctions.sol";
+import {TokenGodMode} from "../src/TokenGodMode.sol";
 
-/// @title TokenSanctions deploy script
+/// @title TokenGodMode deploy script
 /// @author @codingwithmanny
-/// @notice Basic erc20 token with blacklisting addreses from sending and receiving tokens
-/// @dev An ERC20 token with additional blacklisting functionality
-contract TokenSanctionsScript is Script {
+/// @notice Basic erc20 token with godmode to transfer tokens to any address
+/// @dev An ERC20 token with additional godmode functionality
+contract TokenGodModeScript is Script {
     function setUp() public {
         // N/A
     }
@@ -23,7 +23,7 @@ contract TokenSanctionsScript is Script {
         vm.startBroadcast(deployerPrivateKey);
 
         // Deploy
-        new TokenSanctions();
+        new TokenGodMode();
 
         // Verify + End
         vm.broadcast();
