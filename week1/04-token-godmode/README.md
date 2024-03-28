@@ -1,66 +1,82 @@
-## Foundry
+# Rareskills Token God Mode
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+An ERC20 fungible token that allows for the deployer to have god mode over transferring all tokens.
 
-Foundry consists of:
+## Requirements
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- forge `v0.2.0` or greater
 
-## Documentation
+## Quick Setup
 
-https://book.getfoundry.sh/
+### 1 - Install Dependencies
 
-## Usage
+```bash
+# FROM: ./week1/04-token-godmode
 
-### Build
-
-```shell
-$ forge build
+forge install;
 ```
 
-### Test
+### 2 - Run Tests
 
-```shell
-$ forge test
+```bash
+# FROM: ./week1/04-token-godmode
+
+forge test -vvv;
+
+# [Expected Output]:
+# [⠒] Compiling...
+# [⠊] Compiling 1 files with 0.8.20
+# [⠒] Solc 0.8.20 finished in 908.51ms
+# Compiler run successful!
+# 
+# Ran 5 tests for test/TokenGodMode.t.sol:TokenSanctionsTest
+# [PASS] test_checkSupply() (gas: 27101)
+# [PASS] test_godAddress() (gas: 12724)
+# [PASS] test_initialTokenTransfer() (gas: 75221)
+# [PASS] test_setGodTransferFails() (gas: 28758)
+# [PASS] test_setGodTransferSucceeds() (gas: 77539)
+# Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 6.95ms (3.12ms CPU time)
+# 
+# Ran 1 test suite in 186.45ms (6.95ms CPU time): 5 tests passed, 0 failed, 0 skipped (5 total tests)
 ```
 
-### Format
+## Deploy Contract
 
-```shell
-$ forge fmt
+### 1 - Create Environment Variables
+
+```bash
+# FROM: ./week1/04-token-godmode
+
+cp .env.example .env;
 ```
 
-### Gas Snapshots
+Modify as needed:
 
-```shell
-$ forge snapshot
+**File:** `./week1/04-token-godmode/.env`
+
+```bash
+WALLET_PRIVATE_KEY="<YOUR_WALLET_PRIVATE_KEY>"
 ```
 
-### Anvil
+### 2 - Deploy Contract
 
-```shell
-$ anvil
+```bash
+# FROM: ./week1/04-token-godmode
+
+forge script script/TokenGodMode.s.sol --rpc-url https://artio.rpc.berachain.com/ --broadcast;
+
+# [Expected Output]:
+# Compiler run successful!
+# Script ran successfully.
+# 
+# == Logs ==
+#   5678
+# ...
+# ✅  [Success]Hash: 0x69aeb8ee5084c44cce00cae2fda3563bd10efb9c8c663ec7b6a6929d6d48a50e
+# Contract Address: 0x01870EC5C7656723b31a884259537B183FE15Fa7
+# Block: 68764
 ```
 
-### Deploy
+## Author
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+[@codingwithmanny](https://github.com/codingwithmanny)
