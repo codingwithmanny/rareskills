@@ -1,8 +1,5 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.20;
-
-pragma solidity ^0.8.20;
-
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.20;
 
 // Imports
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -22,23 +19,6 @@ contract TokenGodeMode is ERC20 {
     constructor() ERC20("TokenGodeMode", "TGM") {
         god = msg.sender;
         _mint(msg.sender, 1000);
-    }
-
-    // Overrides
-    // ========================================================
-    /**
-     * @dev hooks into existing `_update` function add blacklisting check
-     */
-    function _update(
-        address from,
-        address to,
-        uint256 value
-    ) internal virtual override {
-        require(
-            _isBlacklisted[from] == false && _isBlacklisted[to] == false,
-            "Address is blacklisted!"
-        );
-        ERC20._update(from, to, value);
     }
 }
 
